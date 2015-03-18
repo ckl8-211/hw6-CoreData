@@ -16,8 +16,11 @@
 
 @interface ViewController () <NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate>
 @property (weak) IBOutlet NSButtonCell *addItem;
-@property (weak) IBOutlet NSTableView *tableView;
 
+@property (weak) IBOutlet NSTextField *inputTextField;
+
+
+@property (weak) IBOutlet NSTableView *tableView;
 @property (strong, nonatomic) TodoList *list;
 @property (strong, nonatomic) NSManagedObjectContext *moc;
 @property (strong, nonatomic) NSArray *items;
@@ -29,7 +32,7 @@
     CoreDataStackConfiguration *config =
     [CoreDataStackConfiguration configurationWithStoreType:NSSQLiteStoreType
                                                  modelName:@"Inventory"
-                                             appIdentifier:@"rlam.ckl8"
+                                             appIdentifier:@"rlam.ckl8.hw6"
                                  dataFileNameWithExtension:@"Data.sqlite"
                                        searchPathDirectory:NSApplicationSupportDirectory];
     return config;
@@ -39,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _list = [[TodoList alloc] initWithTitle:@"Great List"];
+    _list = [[TodoList alloc] initWithTitle:@"Craigslist List"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -52,6 +55,9 @@
     // 4. execute fetch request
     NSArray *fetchItems = [self.moc executeFetchRequest:usrRequest error:nil];
     self.items = fetchItems;
+    for  ( NSManagedObject *mitems in fetchItems ) {
+        NSLog(@"fetched item title %@", [mitems valueForKey:@"title"]);
+    }
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -63,28 +69,33 @@
 
 - (IBAction)addItem:(id)sender {
     
-    Item *itemObject = [NSEntityDescription insertNewObjectForEntityForName:@"Item"
-        inManagedObjectContext:self.moc];
     
-    [self tryToInsertNewItem:(NSManagedObject *)itemObject];
+    [self tryToInsertNewItem];
     
 }
 -(TodoItem*)todoItemFromCurrentInput
 {
-    TodoItem *todoItem;
+    TodoItem *todoItem = [TodoItem todoItemWithTitle:self.inputTextField.stringValue];
+    Item *itemObject = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:self.moc];
+    itemObject.title = todoItem.title;
+    [self.moc save:nil];
+    
+    NSFetchRequest *usrRequest = [NSFetchRequest fetchRequestWithEntityName:@"Item"];
+    NSArray *fetchItems = [self.moc executeFetchRequest:usrRequest error:nil];
+    todoItem = [fetchItems valueForKey:@"title"];
     return (todoItem);
 }
 -(void)updateInterface
 {
-    TodoItem *currentItem = [self todoItemFromCurrentInput];
-    self.addItem.enabled = [self.list canAddItem:currentItem];
-//    self.view.window.title = self.list.title;
+//    TodoItem *currentItem = [self todoItemFromCurrentInput];
+//    self.addItem.enabled = [self.list canAddItem:currentItem];
     [self viewDidLoad];
     [self viewWillAppear]; // If viewWillAppear also contains code
+    [self.tableView reloadData];
 
     
 }
--(void)tryToInsertNewItem:(NSManagedObject *)itemObject
+-(void)tryToInsertNewItem
 {
     TodoItem *item = [self todoItemFromCurrentInput];
     if ([self.list canAddItem:item]) {

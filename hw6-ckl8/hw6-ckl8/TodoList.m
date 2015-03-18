@@ -151,25 +151,11 @@
 #pragma mark - Convenience
 
 // TODO: IMPLEMENT METHODS
-+(instancetype)groceryList
++(instancetype)craigslistList
 {
-    TodoList *list = [[self alloc] initWithTitle:@"Grocery List"];
-    [list addItemWithTitle:@"Peanuts"];
-    [list addItemWithTitle:@"Bananas"];
-    [list addItemWithTitle:@"Yogurt"];
-    [list addItemWithTitle:@"Frozen Berries"];
-    [list addItemWithTitle:@"Coffee Beans"];
-    return list;
-}
-
-+(instancetype)airplaneLandingChecklist
-{
-    TodoList *list = [[self alloc] initWithTitle:@"Airplane Landing Checklist"];
-    [list addItemWithTitle:@"Fly to nearby landing zone"];
-    [list addItemWithTitle:@"Radio the ATC tower"];
-    [list addItemWithTitle:@"Line up plane with runway"];
-    [list addItemWithTitle:@"Lower flaps"];
-    [list addItemWithTitle:@"Ease back on throttle"];
+    TodoList *list = [[self alloc] initWithTitle:@"Craigslist List"];
+    [list addItemWithTitle:@"MacBook"];
+    [list addItemWithTitle:@"Iphone6"];
     return list;
 }
 

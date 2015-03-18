@@ -40,7 +40,6 @@
 -(NSUInteger)itemCount;
 
 // constructors
-+(instancetype)groceryList;
-+(instancetype)airplaneLandingChecklist;
++(instancetype)craigslistList;
 
 @end
