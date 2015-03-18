@@ -19,6 +19,8 @@
 		7698AAE71AB9305F00AD8924 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 7698AAE61AB9305F00AD8924 /* Item.m */; };
 		7698AAEA1AB9305F00AD8924 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 7698AAE91AB9305F00AD8924 /* Location.m */; };
 		7698AAED1AB9305F00AD8924 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7698AAEC1AB9305F00AD8924 /* Tag.m */; };
+		76EE1CC01AB953AC003DF039 /* TodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 76EE1CBD1AB953AC003DF039 /* TodoList.m */; };
+		76EE1CC11AB953AC003DF039 /* TodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 76EE1CBF1AB953AC003DF039 /* TodoItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		7698AAE91AB9305F00AD8924 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		7698AAEB1AB9305F00AD8924 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		7698AAEC1AB9305F00AD8924 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		76EE1CBC1AB953AC003DF039 /* TodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoList.h; sourceTree = "<group>"; };
+		76EE1CBD1AB953AC003DF039 /* TodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoList.m; sourceTree = "<group>"; };
+		76EE1CBE1AB953AC003DF039 /* TodoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoItem.h; sourceTree = "<group>"; };
+		76EE1CBF1AB953AC003DF039 /* TodoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,10 @@
 		766D40F21AB4CA18008EE5A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				76EE1CBC1AB953AC003DF039 /* TodoList.h */,
+				76EE1CBD1AB953AC003DF039 /* TodoList.m */,
+				76EE1CBE1AB953AC003DF039 /* TodoItem.h */,
+				76EE1CBF1AB953AC003DF039 /* TodoItem.m */,
 				766D40F31AB4CA40008EE5A9 /* ConfigurableCoreDataStack.h */,
 				766D40F41AB4CA40008EE5A9 /* ConfigurableCoreDataStack.m */,
 				766D40F51AB4CA40008EE5A9 /* CoreDataStackConfiguration.h */,
@@ -298,8 +308,10 @@
 				765B09F81AB2932B00D90700 /* AppDelegate.m in Sources */,
 				766D40F81AB4CA40008EE5A9 /* CoreDataStackConfiguration.m in Sources */,
 				7698AAE71AB9305F00AD8924 /* Item.m in Sources */,
+				76EE1CC11AB953AC003DF039 /* TodoItem.m in Sources */,
 				7698AAEA1AB9305F00AD8924 /* Location.m in Sources */,
 				765B0A001AB2932B00D90700 /* Inventory.xcdatamodeld in Sources */,
+				76EE1CC01AB953AC003DF039 /* TodoList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
