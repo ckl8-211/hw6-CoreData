@@ -14,7 +14,7 @@
 #import "TodoList.h"
 #import "Item.h"
 
-@interface ViewController ()
+@interface ViewController () <NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate>
 @property (weak) IBOutlet NSButtonCell *addItem;
 @property (weak) IBOutlet NSTableView *tableView;
 
@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSArray *items;
 @end
 @implementation ViewController
+
 -(CoreDataStackConfiguration*)mainConfig
 {
     CoreDataStackConfiguration *config =
@@ -31,20 +32,21 @@
                                              appIdentifier:@"rlam.ckl8"
                                  dataFileNameWithExtension:@"Data.sqlite"
                                        searchPathDirectory:NSApplicationSupportDirectory];
-    
     return config;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    _list = [[TodoList alloc] initWithTitle:@"Great List"];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     // 1. create core data stack
     // 2. get moc
     ConfigurableCoreDataStack *stack = [ConfigurableCoreDataStack stackWithConfiguration:[self mainConfig]];
     self.moc = [stack managedObjectContext];
-    
-    
     // 3. make a fetch request
     NSFetchRequest *usrRequest = [NSFetchRequest fetchRequestWithEntityName:@"Item"];
     // 4. execute fetch request
@@ -76,7 +78,10 @@
 {
     TodoItem *currentItem = [self todoItemFromCurrentInput];
     self.addItem.enabled = [self.list canAddItem:currentItem];
-    self.view.window.title = self.list.title;
+//    self.view.window.title = self.list.title;
+    [self viewDidLoad];
+    [self viewWillAppear]; // If viewWillAppear also contains code
+
     
 }
 -(void)tryToInsertNewItem:(NSManagedObject *)itemObject
